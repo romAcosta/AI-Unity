@@ -2,28 +2,21 @@ using UnityEngine;
 
 public class AgentSpawner : MonoBehaviour
 {
-    [SerializeField] AIAgent[] agents;
-    [SerializeField] LayerMask layerMask;
-    
-    int index = 0;
-    void Update()
+    [SerializeField] private AIAgent[] agents;
+    [SerializeField] private LayerMask layerMask;
+
+    private int index;
+
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0) || (Input.GetMouseButton(0) && Input.GetKey(KeyCode.LeftShift)))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit,100,layerMask))
-            {
+            if (Physics.Raycast(ray, out hit, 100, layerMask))
                 Instantiate(agents[index], hit.point, Quaternion.identity);
-            }
         }
 
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            
-            index = ++index % agents.Length;
-        }
+        if (Input.GetKeyDown(KeyCode.Tab)) index = ++index % agents.Length;
     }
-    
-    
 }
