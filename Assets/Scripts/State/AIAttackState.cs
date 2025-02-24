@@ -8,9 +8,7 @@ public class AIAttackState : AIState
     public AIAttackState(StateAgent agent) : base(agent)
     {
         CreateTransition(nameof(AIIdleState)).
-            AddCondition(agent.enemySeen,Condition.Predicate.Equal,false);
-        CreateTransition(nameof(AIChaseState)).
-            AddCondition(agent.timer,Condition.Predicate.LessOrEqual,0);
+            AddCondition(agent.timer, Condition.Predicate.LessOrEqual, 0);
     }
 
     public override void OnEnter()
@@ -18,7 +16,8 @@ public class AIAttackState : AIState
         attackTimer = 1;
         hasAttacked = false;
         agent.timer.value = 2;
-        //TODO Add attack animation
+        
+        agent.animator.SetTrigger("Attack");
         agent.movement.Stop();
     }
 
@@ -29,6 +28,13 @@ public class AIAttackState : AIState
         {
             agent.Attack();
             hasAttacked = true;
+        }
+        // set destination to enemy position
+        agent.movement.Destination = agent.enemy.transform.position;
+        // rotate towards movement direction
+        if (agent.movement.Direction != Vector3.zero)
+        {
+            agent.transform.rotation = Quaternion.Lerp(agent.transform.rotation, Quaternion.LookRotation(agent.movement.Direction, Vector3.up), Time.deltaTime * 5);
         }
     }
 

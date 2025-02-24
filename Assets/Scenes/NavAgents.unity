@@ -7651,6 +7651,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1942240311156595300, guid: 762893fd1b743f842b8d4ae0fb9776cf, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2688106376934737426, guid: 762893fd1b743f842b8d4ae0fb9776cf, type: 3}
       propertyPath: m_Name
       value: StateAgent

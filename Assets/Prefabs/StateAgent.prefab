@@ -120,6 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: {fileID: 2724128857261082905}
   perception: {fileID: 8360653410105676538}
+  animator: {fileID: 1942240311156595300}
   timer:
     value: 0
   health:
@@ -292,6 +293,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf3c5be0149d02a4c8669741c13a5213, type: 3}
+--- !u!95 &1942240311156595300 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: bf3c5be0149d02a4c8669741c13a5213, type: 3}
+  m_PrefabInstance: {fileID: 5448982729803589621}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5482030360064884766 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bf3c5be0149d02a4c8669741c13a5213, type: 3}

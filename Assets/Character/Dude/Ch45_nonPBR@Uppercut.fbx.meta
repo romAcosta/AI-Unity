@@ -1,34 +1,9 @@
 fileFormatVersion: 2
-guid: 4fd4ff8aa888a63449235976b9ca3a95
+guid: 69623e2e6957d1644bd021c9d49375db
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: skeletonZombie_body_diffuse
-    second: {fileID: 2800000, guid: 5a88a0427c492184c9379a74d49aa481, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: skeletonZombie_diffuse
-    second: {fileID: 2800000, guid: aa0da9b0b214f00459fddc34e78637aa, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: skeletonZombie_glow
-    second: {fileID: 2800000, guid: 0f51e98d148cbf241a1e1a2718025da7, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: skeletonZombie_normal
-    second: {fileID: 2800000, guid: 6f6c4190af861de449ee816bf46c80d5, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: skeletonZombie_specular
-    second: {fileID: 2800000, guid: 32873aed9aa35e64db6202e811e720d7, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -8,20 +8,25 @@ public class StateAgent : AIAgent
     
     
     [SerializeField] Perception perception;
+    public Animator animator;
+    
     public StateMachine stateMachine = new StateMachine();
     public ValueRef<float> timer = new ValueRef<float>();
     public ValueRef<float> health = new ValueRef<float>();
     public ValueRef<float> destinationDistance = new ValueRef<float>();
-    
     public ValueRef<bool> enemySeen = new ValueRef<bool>();
     public ValueRef<float> enemyDistance = new ValueRef<float>();
     public AIAgent enemy;
     
     private void Start()
     {
+        health.value = 100;
         stateMachine.AddState(nameof(AIIdleState), new AIIdleState(this));
         stateMachine.AddState(nameof(AIPatrolState), new AIPatrolState(this));
         stateMachine.AddState(nameof(AIChaseState), new AIChaseState(this));
+        stateMachine.AddState(nameof(AIAttackState), new AIAttackState(this));
+        stateMachine.AddState(nameof(AIHitState), new AIHitState(this));
+        stateMachine.AddState(nameof(AIDeathState), new AIDeathState(this));
         stateMachine.SetState(nameof(AIIdleState));
     }
     
@@ -54,20 +59,21 @@ public class StateAgent : AIAgent
     public void OnDamage(float damage)
     {
         health.value -= damage;
-
-        //if (health > 0) stateMachine.SetState(nameof(AIHitState));
-        //else stateMachine.SetState(nameof(AIDeathState));
+        print("ouch:" + damage);
+        if (health > 0) stateMachine.SetState(nameof(AIHitState));
+        else stateMachine.SetState(nameof(AIDeathState));
     }
     
     public void Attack()
     {
         // check for collision with surroundings
-        var colliders = Physics.OverlapSphere(transform.position, 1);
+        var colliders = Physics.OverlapSphere(transform.position, 3);
+        print(colliders.Length);
         foreach (var collider in colliders)
         {
             // enable collision only with enemy
-            if (collider.gameObject != enemy) continue;
-
+            if (collider.gameObject != enemy.gameObject) continue;
+ 
             // check if collider object is a state agent, damage agent
             if (collider.gameObject.TryGetComponent<StateAgent>(out var agent))
             {

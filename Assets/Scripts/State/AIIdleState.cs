@@ -12,6 +12,7 @@ public class AIIdleState: AIState
 
     public override void OnEnter()
     {
+        agent.animator.SetTrigger("Idle");
         agent.timer.value = Random.Range(1f, 3f);
         agent.movement.Stop();
     }

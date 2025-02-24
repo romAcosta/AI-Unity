@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373aaf6cda90d0045bd994bfb5d6252b, type: 3}
   m_Name: NavMoveData 1
   m_EditorClassIdentifier: 
-  maxSpeed: 14.6
+  maxSpeed: 6.06
   minSpeed: 1
   maxForce: 50
   turnRate: 3
