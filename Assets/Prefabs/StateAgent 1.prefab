@@ -227,7 +227,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  numRaycast: 9
+  numRaycast: 20
 --- !u!1001 &5448982729803589621
 PrefabInstance:
   m_ObjectHideFlags: 0

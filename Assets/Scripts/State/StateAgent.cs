@@ -16,7 +16,8 @@ public class StateAgent : AIAgent
     public ValueRef<float> destinationDistance = new ValueRef<float>();
     public ValueRef<bool> enemySeen = new ValueRef<bool>();
     public ValueRef<float> enemyDistance = new ValueRef<float>();
-    public AIAgent enemy;
+    public ValueRef<float> enemyHealth = new ValueRef<float>();
+    public StateAgent enemy;
     
     private void Start()
     {
@@ -40,12 +41,14 @@ public class StateAgent : AIAgent
             enemySeen.value = gameObjects.Length > 0;
             if (gameObjects.Length > 0)
             {
-                gameObjects[0].TryGetComponent<AIAgent>(out  enemy) ;
+                gameObjects[0].TryGetComponent<StateAgent>(out  enemy) ;
                 enemyDistance.value = transform.position.DistanceXZ(enemy.transform.position);
-                // movement.Destination = gameObjects[0].transform.position;
+                
             }
             
         }
+        if(enemy!=null) enemyHealth.value = enemy.health;
+        animator.SetFloat("Speed", movement.Velocity.magnitude);
         destinationDistance.value = transform.position.DistanceXZ(movement.Destination);
 
         stateMachine.CurrentState?.CheckTransitions();
@@ -59,9 +62,13 @@ public class StateAgent : AIAgent
     public void OnDamage(float damage)
     {
         health.value -= damage;
-        print("ouch:" + damage);
+        
         if (health > 0) stateMachine.SetState(nameof(AIHitState));
-        else stateMachine.SetState(nameof(AIDeathState));
+        else
+        {
+            animator.SetBool("Dead", true);
+            stateMachine.SetState(nameof(AIDeathState));
+        }
     }
     
     public void Attack()
@@ -93,6 +100,6 @@ public class StateAgent : AIAgent
         rect.x = point.x - (rect.width / 2);
         rect.y = Screen.height - point.y - rect.height - 20;
         // draw label with current state name
-        GUI.Label(rect, stateMachine.CurrentState.Name);
+        //GUI.Label(rect, stateMachine.CurrentState.Name);
     }
 }

@@ -11,7 +11,7 @@ public class AIDeathState : AIState
 
     public override void OnEnter()
     {
-        agent.animator.SetTrigger("Death");
+        
         agent.movement.Stop();
     }
 

@@ -9,12 +9,13 @@ public class AIPatrolState : AIState
         CreateTransition(nameof(AIIdleState)).
             AddCondition(agent.destinationDistance,Condition.Predicate.LessOrEqual,1f);
         CreateTransition(nameof(AIChaseState)).
-            AddCondition(agent.enemySeen,Condition.Predicate.Equal,true);
+            AddCondition(agent.enemySeen, Condition.Predicate.Equal, true).
+            AddCondition(agent.enemyHealth, Condition.Predicate.Greater, 0 );
     }
 
     public override void OnEnter()
     {
-        agent.animator.SetTrigger("Walk");
+        
         agent.movement.Destination = NavNode.GetRandomNavNode().transform.position;
         agent.movement.Resume();
     }

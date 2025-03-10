@@ -56,10 +56,12 @@ public class StateTransition
 	/// Adds a condition that must be met for this transition to occur.
 	/// </summary>
 	/// <param name="condition">The condition to add</param>
-	public void AddCondition(Condition condition)
+	public StateTransition AddCondition(Condition condition)
 	{
 		Debug.Assert(condition != null, "Condition is null.");
 		conditions.Add(condition);
+		
+		return this;
 	}
 
 	/// <summary>
@@ -70,9 +72,10 @@ public class StateTransition
 	/// <param name="value">The value reference to check in the condition</param>
 	/// <param name="predicate">How to compare the value (Greater, Less, Equal, etc.)</param>
 	/// <param name="condition">The value to compare against</param>
-	public void AddCondition<T>(ValueRef<T> value, Condition.Predicate predicate, T condition) where T : IComparable<T>
+	public StateTransition AddCondition<T>(ValueRef<T> value, Condition.Predicate predicate, T condition) where T : IComparable<T>
 	{
 		AddCondition(new ValueCondition<T>(value, predicate, condition));
+		return this;
 	}
 
 	/// <summary>
